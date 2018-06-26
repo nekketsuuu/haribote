@@ -1,5 +1,12 @@
-Z_TOOLS = ./z_tools
-QEMU_PATH = "$(Z_TOOLS)/qemu"
+Z_TOOLS   = ./z_tools
+QEMU_PATH = ./z_tools/qemu
+
+all: tools
+
+.PHONY: tools
+tools:
+	cd tolsrc && make all
+	cd tolsrc && make OKDIR="../$(Z_TOOLS)" install
 
 .PHONY: run
 run:

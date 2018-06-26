@@ -1,1 +1,9 @@
+# tools
+/z_tools/*
+!/z_tools/qemu
+
+# generated binary
+/z_tools/qemu/fdimage0.bin
+
+# backup files
 *~
