@@ -1,9 +1,12 @@
 This repository is distributed under Creative Commons Attribution 3.0 Unported (CC BY 3.0),
 except for the following files:
 
-* ./qemu/SDL.dll   : This file is distributed under The GNU Lesser General Public License (LGPL)
-* ./qemu/bios.bin  : This file is distributed under The GNU Lesser General Public License (LGPL)
+* The following directory is a Git submodule, and is distributed under its own license.
+    * ./tolsrc
+* The following files are distributed under The GNU Lesser General Public License (LGPL)
+    * ./z_tools/qemu/SDL.dll
+    * ./z_tools/qemu/bios.bin
 
 This software is originally created by H. Kawai (川合秀実), and modified by Takuma Ishikawa.
 
-For the detailed information of CC BY 3.0 and LGPL, see ./LICENSES/CC.txt and ./LICENSES/LGPL.txt.
+For the detailed information of CC BY 3.0 and LGPL, see ./LICENSES/CC.txt and ./LICENSES/LGPL.txt respectively.
