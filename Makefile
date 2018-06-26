@@ -1,14 +1,21 @@
+AS = ./z_tools/nask
+
 Z_TOOLS   = ./z_tools
 QEMU_PATH = ./z_tools/qemu
 
-all: tools
+TARGET = ./src/helloos.img
+
+all: tools $(TARGET)
 
 .PHONY: tools
 tools:
-	cd tolsrc && make all
-	cd tolsrc && make OKDIR="../$(Z_TOOLS)" install
+	cd ./tolsrc && make all
+	cd ./tolsrc && make install
+	cp -r ./tolsrc/ok/* "$(Z_TOOLS)/"
 
-.PHONY: run
-run:
-	cp ./helloos.img "$(QEMU_PATH)/fdimage0.bin"
+%.img: %.nas tools
+	$(AS) "$<" "$@"
+
+run: $(TARGET)
+	cp "$(TARGET)" "$(QEMU_PATH)/fdimage0.bin"
 	cd "$(QEMU_PATH)" && ./run.sh

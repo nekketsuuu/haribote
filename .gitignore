@@ -3,7 +3,8 @@
 !/z_tools/qemu
 
 # generated binary
-/z_tools/qemu/fdimage0.bin
+*.bin
+*.img
 
 # backup files
 *~
