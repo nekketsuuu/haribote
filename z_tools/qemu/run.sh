@@ -11,4 +11,4 @@
 export SDL_VIDEODRIVER=x11
 export QEMU_AUDIO_DRV=none
 export QEMU_AUDIO_LOG_TO_MONITOR=0
-qemu-system-i386 -L . -m 32 -rtc base=localtime -fda fdimage0.bin
+qemu-system-i386 -L . -m 32 -rtc base=localtime -drive file=fdimage0.bin,format=raw,index=0,if=floppy
