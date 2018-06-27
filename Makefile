@@ -1,7 +1,7 @@
 # Tools
 
-AS = ./z_tools/nask
-DEL = rm -f
+AS    = ./z_tools/nask
+DEL   = rm -f
 EDIMG = ./z_tools/edimg
 
 Z_TOOLS   = ./z_tools
@@ -15,10 +15,13 @@ TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
 # Sources
 
 TARGET = ./src/haribote.img
-BIN = ./src/ipl.bin
-TEK = ./z_tools/fdimg0at.tek
+SYS    = ./src/haribote.sys
+IPLBIN = ./src/ipl.bin
+TEK    = ./z_tools/fdimg0at.tek
 
-TRASH = $(TARGET) $(BINS) $(BINS:%.bin=%.lst) $(QEMU_PATH)/fdimage0.bin
+TRASH = $(TARGET) $(SYS) $(SYS:%.sys=%.lst) \
+  $(IPLBIN) $(IPLBIN:%.bin=%.lst) \
+  $(QEMU_PATH)/fdimage0.bin
 
 # Build rules
 
@@ -30,8 +33,14 @@ tools:
 	cd ./tolsrc && make install
 	cp -r ./tolsrc/ok/* $(Z_TOOLS)/
 
-$(TARGET): $(BIN)
-	$(EDIMG) imgin:$(TEK) wbinimg src:$< len:512 from:0 to:0 imgout:$@
+$(TARGET): $(IPLBIN) $(SYS)
+	$(EDIMG) imgin:$(TEK) \
+		wbinimg src:$< len:512 from:0 to:0 \
+		copy from:$(SYS) to:@: \
+		imgout:$@
+
+$(SYS): $(SYS:%.sys=%.nas)
+	$(AS) $< $@ $(<:%.nas=%.lst)
 
 %.bin: %.nas
 	$(AS) $< $@  $(<:%.nas=%.lst)

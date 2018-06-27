@@ -6,6 +6,7 @@
 *.bin
 !/test/helloos.img
 *.img
+*.sys
 
 # generated text
 *.lst
