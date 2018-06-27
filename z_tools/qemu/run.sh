@@ -7,6 +7,7 @@
 # * SDL_VIDEODRIVER: windib --> x11
 # * --localtime --> -rtc base=localtime (--localtime is deprecated)
 # * Remove -std-vga, which is an option for Windows XP
+# * Change `-fda` option to `-drive` option in order to delete a warning
 
 export SDL_VIDEODRIVER=x11
 export QEMU_AUDIO_DRV=none
