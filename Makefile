@@ -16,7 +16,7 @@ TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
 
 TARGET = ./src/haribote.img
 SYS    = ./src/haribote.sys
-IPLBIN = ./src/ipl.bin
+IPLBIN = ./src/ipl10.bin
 TEK    = ./z_tools/fdimg0at.tek
 
 TRASH = $(TARGET) $(SYS) $(SYS:%.sys=%.lst) \
