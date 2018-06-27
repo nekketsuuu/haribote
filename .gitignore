@@ -4,7 +4,11 @@
 
 # generated binary
 *.bin
+!/test/helloos.img
 *.img
+
+# generated text
+*.lst
 
 # backup files
 *~

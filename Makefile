@@ -1,5 +1,8 @@
+# Tools
+
 AS = ./z_tools/nask
 DEL = rm -f
+EDIMG = ./z_tools/edimg
 
 Z_TOOLS   = ./z_tools
 QEMU_PATH = ./z_tools/qemu
@@ -9,7 +12,15 @@ TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
   multicmd nask naskcnv0 obj2bim sjisconv t5lzma \
   makeiso
 
+# Sources
+
 TARGET = ./src/helloos.img
+BINS = ./src/ipl.bin
+TEK = ./z_tools/fdimg0at.tek
+
+TRASH = $(TARGET) $(BINS) $(BINS:%.bin=%.lst) $(QEMU_PATH)/fdimage0.bin
+
+# Build rules
 
 all: tools $(TARGET)
 
@@ -17,18 +28,25 @@ all: tools $(TARGET)
 tools:
 	cd ./tolsrc && make all
 	cd ./tolsrc && make install
-	cp -r ./tolsrc/ok/* "$(Z_TOOLS)/"
+	cp -r ./tolsrc/ok/* $(Z_TOOLS)/
 
-%.img: %.nas tools
-	$(AS) "$<" "$@"
+$(TARGET): $(BINS)
+	$(EDIMG) imgin:$(TEK) wbinimg src:$< len:512 from:0 to:0 imgout:$@
+
+%.bin: %.nas
+	$(AS) $< $@  $(<:%.nas=%.lst)
+
+# Utilities
 
 run: $(TARGET)
-	cp "$(TARGET)" "$(QEMU_PATH)/fdimage0.bin"
-	cd "$(QEMU_PATH)" && ./run.sh
+	cp $(TARGET) $(QEMU_PATH)/fdimage0.bin
+	cd $(QEMU_PATH) && ./run.sh
+
+test: $(TARGET)
+	./test/run_test.sh
 
 .PHONY: clean
 clean:
-	$(DEL) "$(TARGET)"
-	$(DEL) "$(QEMU_PATH)/fdimage0.bin"
+	$(DEL) $(TRASH)
 clean-all: clean
 	$(DEL) -r $(TOOLS)
