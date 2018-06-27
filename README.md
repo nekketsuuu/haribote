@@ -26,7 +26,6 @@ sudo apt install build-essential libc6-dev-i386 qemu
 ### オプショナル (開発に必要)
 
 * バイナリエディタ
-* cmp (テストに使います。Ubuntu には POSIX コマンドとして既に含まれています)
 
 ## 実行方法
 
@@ -44,6 +43,7 @@ make run
 * 1日目: アセンブラが必要になります。今回は折角なので筆者が作った nask をビルドして使いましたが、nask の元となっている nasm を使うことでも開発できるようです。
     * [http://hrb.osask.jp/wiki/?tools/nask](https://web.archive.org/web/20160608145514/http://hrb.osask.jp/wiki/?tools/nask)
     * nasm を使う場合、サポートページに書いてあるように軽微な修正が必要です。
+* 1日目: `imgtol.com` というのはドライブに刺さっているフロッピーへ img ファイルの内容を書き込むコマンドなので、今回は必要ありません。
 
 ## リンク集
 

@@ -14,8 +14,8 @@ TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
 
 # Sources
 
-TARGET = ./src/helloos.img
-BINS = ./src/ipl.bin
+TARGET = ./src/haribote.img
+BIN = ./src/ipl.bin
 TEK = ./z_tools/fdimg0at.tek
 
 TRASH = $(TARGET) $(BINS) $(BINS:%.bin=%.lst) $(QEMU_PATH)/fdimage0.bin
@@ -30,7 +30,7 @@ tools:
 	cd ./tolsrc && make install
 	cp -r ./tolsrc/ok/* $(Z_TOOLS)/
 
-$(TARGET): $(BINS)
+$(TARGET): $(BIN)
 	$(EDIMG) imgin:$(TEK) wbinimg src:$< len:512 from:0 to:0 imgout:$@
 
 %.bin: %.nas
@@ -38,14 +38,11 @@ $(TARGET): $(BINS)
 
 # Utilities
 
-.PHONY: run test clean clean-all
+.PHONY: run clean clean-all
 
 run: $(TARGET)
 	cp $(TARGET) $(QEMU_PATH)/fdimage0.bin
 	cd $(QEMU_PATH) && ./run.sh
-
-test: $(TARGET)
-	./test/run_test.bash
 
 clean:
 	$(DEL) $(TRASH)
