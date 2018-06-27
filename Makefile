@@ -57,3 +57,4 @@ clean:
 	$(DEL) $(TRASH)
 clean-all: clean
 	$(DEL) -r $(TOOLS)
+	cd ./tolsrc && make clean
