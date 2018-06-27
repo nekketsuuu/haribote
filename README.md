@@ -38,6 +38,7 @@ make run
 
 ## 開発メモ
 
+* 書籍正誤表のアーカイブは[こちら](https://web.archive.org/web/*/http://hrb.osask.jp:80/bugfix.html)。
 * 1日目: バイナリエディタが必要となります。「Ubuntu binary editor」で調べると無数に出てくるので、好きなものを使います。僕は GHex と hexedit を気分に合わせて併用していました。
     * GHex: GUI エディタです。`sudo apt install ghex` でインストールできます。
     * hexedit: CLI エディタです。`sudo apt install hexedit` でインストールできます。`hexedit -l16 <ファイル名>` のようにオプションを付けて起動すると横バイト数が書籍と同じになります。`alias hexedit='hexedit -l16'` が便利です。
