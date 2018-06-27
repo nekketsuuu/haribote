@@ -25,7 +25,8 @@ sudo apt install build-essential libc6-dev-i386 qemu
 
 ### オプショナル (開発に必要)
 
-* バイナリエディタ
+* テキストエディタ (Emacs, Vim, VSCode 等、何でも良い。)
+* バイナリエディタ (参照: 下に書いてある開発メモ 1 日目)
 
 ## 実行方法
 
