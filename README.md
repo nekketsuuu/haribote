@@ -26,6 +26,7 @@ sudo apt install build-essential libc6-dev-i386 qemu
 ### オプショナル (開発に必要)
 
 * バイナリエディタ
+* cmp (テストに使います。Ubuntu には POSIX コマンドとして既に含まれています)
 
 ## 実行方法
 
