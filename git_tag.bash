@@ -18,15 +18,20 @@ if [ ${#1} -ne 2 ] ; then
     exit 1
 fi
 
+TAG="day_$1"
+
 echo "$0: show last commit..."
 echo
 git log -1
 echo
 while true ; do
-    read -p "Are you sure to add a tag 'day_$1' to this commit? [Y/n]" ans
+    read -p "Are you sure to add a tag '$TAG' to this commit? [Y/n]" ans
     case "$ans" in
 	'' | [Yy]* )
-            git tag "day_$1" ;
+	    # If the tag is already existed, consider to delete the tag by `git tag -d <tag>`.
+	    # If it is already pushed, also consider to `git push --delete origin <tag>`.
+            git tag "$TAG" || \
+		{ echo "$0: ERROR: Failed to Add a tag. If the tag is already existed, consider to delete it by \`git tag -d $TAG\`. Also, if it is already pushed, consider to \`git push --delete origin $TAG\`." && exit 1 ; } ;
 	    break ;
 	    ;;
 	[Nn]* )
