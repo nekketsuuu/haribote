@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $# -lt 1 ] ; then
     echo "Usage: $0 <file>"
@@ -6,5 +6,7 @@ if [ $# -lt 1 ] ; then
     echo "Prerequisites: dos2unix, nkf"
 fi
 
-dos2unix "$1"
-nkf -w --overwrite "$1"
+for file in "$@" ; do
+    dos2unix "$file"
+    nkf -w --overwrite "$file"
+done
