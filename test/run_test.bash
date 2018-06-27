@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -eu
 
 CMP=cmp
 TARGET=./src/helloos.img

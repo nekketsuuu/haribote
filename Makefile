@@ -43,7 +43,7 @@ run: $(TARGET)
 	cd $(QEMU_PATH) && ./run.sh
 
 test: $(TARGET)
-	./test/run_test.sh
+	./test/run_test.bash
 
 .PHONY: clean
 clean:
