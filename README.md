@@ -46,6 +46,7 @@ make run
     * [http://hrb.osask.jp/wiki/?tools/nask](https://web.archive.org/web/20160608145514/http://hrb.osask.jp/wiki/?tools/nask)
     * nasm を使う場合、サポートページに書いてあるように軽微な修正が必要です。
 * 1日目: `imgtol.com` というのはドライブに刺さっているフロッピーへ img ファイルの内容を書き込むコマンドなので、今回は必要ありません。
+* 2日目: メモリマップのページへのアーカイブは[こちら](https://web.archive.org/web/20070105015242/http://community.osdev.info/?(AT)memorymap)。osdev.org の[ここ](https://wiki.osdev.org/Memory_Map_%28x86%29)でもよい。
 
 ## リンク集
 
