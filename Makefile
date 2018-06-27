@@ -38,6 +38,8 @@ $(TARGET): $(BINS)
 
 # Utilities
 
+.PHONY: run test clean clean-all
+
 run: $(TARGET)
 	cp $(TARGET) $(QEMU_PATH)/fdimage0.bin
 	cd $(QEMU_PATH) && ./run.sh
@@ -45,7 +47,6 @@ run: $(TARGET)
 test: $(TARGET)
 	./test/run_test.bash
 
-.PHONY: clean
 clean:
 	$(DEL) $(TRASH)
 clean-all: clean
