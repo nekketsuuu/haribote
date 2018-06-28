@@ -47,6 +47,7 @@ make run
     * nasm を使う場合、サポートページに書いてあるように軽微な修正が必要です。
 * 1日目: `imgtol.com` というのはドライブに刺さっているフロッピーへ img ファイルの内容を書き込むコマンドなので、今回は必要ありません。
 * 2日目: メモリマップのページへのアーカイブは[こちら](https://web.archive.org/web/20070105015242/http://community.osdev.info/?(AT)memorymap)。osdev.org の[ここ](https://wiki.osdev.org/Memory_Map_%28x86%29)でもよい。
+* 3日目: `edimg` における `copy` コマンドで `to:@:` と書くと「ディスクイメージ中の、`from` と同じファイル名へコピー」という意味になります。これは `edimg` がこの書き方を特別扱いしているからです。詳しいことは書籍についてきたデータの `omake/tolsrc/edimg0j/document.txt` に書いてあります。
 
 ## リンク集
 
