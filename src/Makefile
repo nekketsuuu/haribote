@@ -10,11 +10,12 @@ RULE_FILE = $(INCLUDE_PATH)/haribote.rul
 TEK = ../z_tools/fdimg0at.tek
 IMG = haribote.img
 
-TRASH = bootpack.gas bootpack.nas bootpack.map \
-  bootpack.obj bootpack.bim bootpack.hrb \
+TRASH = $(IMG) \
   asmhead.bin asmhead.lst \
-  ipl10.bin ipl10.lst \
-  haribote.sys $(IMG)
+  bootpack.bim bootpack.gas bootpack.hrb \
+  bootpack.map bootpack.nas bootpack.obj \
+  haribote.sys \
+  ipl10.bin ipl10.lst
 
 # Build rules
 
