@@ -29,7 +29,7 @@ all: $(IMG)
 	$(NASK) $< $@ $(@:%.bin=%.lst)
 
 bootpack.gas: bootpack.c
-	$(CC2GAS) -o $@ $<
+	$(CC2GAS) $(CFLAGS) -o $@ $<
 
 bootpack.nas: bootpack.gas
 	$(GAS2NASK) $< $@

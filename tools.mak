@@ -8,4 +8,4 @@ GAS2NASK = $(TOOL_PATH)/gas2nask -a
 NASK     = $(TOOL_PATH)/nask
 OBJ2BIM  = $(TOOL_PATH)/obj2bim
 
-CFLAGS = -I$(TOOL_PATH) -Os -Wall -Wextra
+CFLAGS = -I$(TOOL_PATH) -Os -Wall

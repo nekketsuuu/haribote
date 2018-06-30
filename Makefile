@@ -12,7 +12,7 @@ TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
 
 # Sources
 
-IMG = ./src/hariboteeeee.img
+IMG = ./src/haribote.img
 TRASH = $(QEMU_PATH)/fdimage0.bin
 
 # Build rules
