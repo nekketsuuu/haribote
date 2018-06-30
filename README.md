@@ -48,6 +48,7 @@ make run
 * 1日目: `imgtol.com` というのはドライブに刺さっているフロッピーへ img ファイルの内容を書き込むコマンドなので、今回は必要ありません。
 * 2日目: メモリマップのページへのアーカイブは[こちら](https://web.archive.org/web/20070105015242/http://community.osdev.info/?(AT)memorymap)。osdev.org の[ここ](https://wiki.osdev.org/Memory_Map_%28x86%29)でもよい。
 * 3日目: `edimg` における `copy` コマンドで `to:@:` と書くと「ディスクイメージ中の、`from` と同じファイル名へコピー」という意味になります。これは `edimg` がこの書き方を特別扱いしているからです。詳しいことは書籍についてきたデータの `omake/tolsrc/edimg0j/document.txt` に書いてあります。
+* 3日目: 筆者が改造した `cc1` (Hikalium さんのリポジトリでは `gocc1` となっているもの) で `.c` から `.gas` を作るのと、GCC 7 で `-S` オプションを使って `.gas` を作るのとでは、生成物に差があります。私の環境では後者を `gas2nas` するとエラーでした。面倒事を減らすには `gocc1` を使う方が良さそうです。
 
 ## リンク集
 

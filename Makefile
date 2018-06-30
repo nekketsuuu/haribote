@@ -1,11 +1,9 @@
 # Tools
 
-AS    = ./z_tools/nask
-DEL   = rm -f
-EDIMG = ./z_tools/edimg
-
-Z_TOOLS   = ./z_tools
-QEMU_PATH = ./z_tools/qemu
+TOOL_PATH    = ./z_tools
+INCLUDE_PATH = ./z_tools/haribote
+QEMU_PATH    = ./z_tools/qemu
+include ./tools.mak
 
 TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
   gocc1 gocc1plus gocpp0 golib00 haritol makefont \
@@ -14,47 +12,34 @@ TOOLS = bim2bin bim2hrb bin2obj edimg gas2nask \
 
 # Sources
 
-TARGET = ./src/haribote.img
-SYS    = ./src/haribote.sys
-IPLBIN = ./src/ipl10.bin
-TEK    = ./z_tools/fdimg0at.tek
-
-TRASH = $(TARGET) $(SYS) $(SYS:%.sys=%.lst) \
-  $(IPLBIN) $(IPLBIN:%.bin=%.lst) \
-  $(QEMU_PATH)/fdimage0.bin
+IMG = ./src/hariboteeeee.img
+TRASH = $(QEMU_PATH)/fdimage0.bin
 
 # Build rules
 
-all: tools $(TARGET)
+all: tools $(IMG)
 
 .PHONY: tools
 tools:
-	cd ./tolsrc && make all
-	cd ./tolsrc && make install
-	cp -r ./tolsrc/ok/* $(Z_TOOLS)/
+	$(MAKE) -C ./tolsrc
+	$(MAKE) -C ./tolsrc install
+	cp -r ./tolsrc/ok/* $(TOOL_PATH)/
 
-$(TARGET): $(IPLBIN) $(SYS)
-	$(EDIMG) imgin:$(TEK) \
-		wbinimg src:$< len:512 from:0 to:0 \
-		copy from:$(SYS) to:@: \
-		imgout:$@
-
-$(SYS): $(SYS:%.sys=%.nas)
-	$(AS) $< $@ $(<:%.nas=%.lst)
-
-%.bin: %.nas
-	$(AS) $< $@  $(<:%.nas=%.lst)
+.PHONY: $(IMG)
+$(IMG):
+	$(MAKE) -C ./src IMG=$(notdir $(IMG))
 
 # Utilities
 
 .PHONY: run clean clean-all
 
-run: $(TARGET)
-	cp $(TARGET) $(QEMU_PATH)/fdimage0.bin
+run: $(IMG)
+	cp $(IMG) $(QEMU_PATH)/fdimage0.bin
 	cd $(QEMU_PATH) && ./run.sh
 
 clean:
 	$(DEL) $(TRASH)
+	$(MAKE) -C ./src IMG=$(notdir $(IMG)) clean
 clean-all: clean
 	$(DEL) -r $(TOOLS)
-	cd ./tolsrc && make clean
+	$(MAKE) -C ./tolsrc clean
