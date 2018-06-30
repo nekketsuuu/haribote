@@ -1,15 +1,22 @@
 # tools
 /z_tools/*
+!/z_tools/haribote
 !/z_tools/qemu
 
-# generated binary
+# build results
+*.bim
 *.bin
-!/test/helloos.img
+*.gas
+*.hrb
 *.img
-*.sys
-
-# generated text
 *.lst
+*.map
+*.nas
+*.obj
+*.sys
+!/src/asmhead.nas
+!/src/ipl10.nas
+!/src/naskfunc.nas
 
 # backup files
 *~
