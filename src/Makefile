@@ -15,7 +15,8 @@ TRASH = $(IMG) \
   bootpack.bim bootpack.gas bootpack.hrb \
   bootpack.map bootpack.nas bootpack.obj \
   haribote.sys \
-  ipl10.bin ipl10.lst
+  ipl10.bin ipl10.lst \
+  naskfunc.obj
 
 # Build rules
 
@@ -24,20 +25,20 @@ all: $(IMG)
 %.bin: %.nas
 	$(NASK) $< $@ $(@:%.bin=%.lst)
 
+%.obj: %.nas
+	$(NASK) $< $@ $(@:%.bin=%.lst)
+
 bootpack.gas: bootpack.c
 	$(CC2GAS) -o $@ $<
 
 bootpack.nas: bootpack.gas
 	$(GAS2NASK) $< $@
 
-bootpack.obj: bootpack.nas
-	$(NASK) $< $@ $(<:%.obj=%.lst)
-
 # 3136KB = 3MB + 64KB
-bootpack.bim: bootpack.obj
+bootpack.bim: bootpack.obj naskfunc.obj
 	$(OBJ2BIM) @$(RULE_FILE) \
 		out:$@ stack:3136k \
-		map:bootpack.map $<
+		map:bootpack.map $^
 
 bootpack.hrb: bootpack.bim
 	$(BIM2HRB) $< $@ 0
