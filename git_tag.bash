@@ -3,8 +3,10 @@
 set -e
 
 if [ $# -lt 1 ] ; then
-    echo "Usage (add today's tag): $0 <number of date>"
-    echo "Usage (push tags):       $0 push"
+    echo "$0: ERROR: Missing arguments. Expected one argument."
+    echo "Usage:"
+    echo "    Add today's tag: $0 <number of date>"
+    echo "    Push tags:       $0 push"
     exit 1
 fi
 
