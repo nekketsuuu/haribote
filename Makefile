@@ -17,7 +17,7 @@ TRASH = $(QEMU_PATH)/fdimage0.bin
 
 # Build rules
 
-.PHONY: all tools
+.PHONY: all tools $(IMG)
 
 all: tools $(IMG)
 
