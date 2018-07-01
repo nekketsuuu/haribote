@@ -14,12 +14,14 @@ TRASH = $(IMG) \
   asmhead.bin asmhead.lst \
   bootpack.bim bootpack.gas bootpack.hrb \
   bootpack.map bootpack.nas bootpack.obj \
+  hankaku.bin hankaku.obj \
   haribote.sys \
   ipl10.bin ipl10.lst \
   naskfunc.obj
 
 # Build rules
 
+.PHONY: all
 all: $(IMG)
 
 %.bin: %.nas
@@ -34,8 +36,14 @@ bootpack.gas: bootpack.c
 bootpack.nas: bootpack.gas
 	$(GAS2NASK) $< $@
 
+hankaku.bin: hankaku.txt
+	$(MAKEFONT) $< $@
+
+hankaku.obj: hankaku.bin
+	$(BIN2OBJ) $< $@ _$(basename $<)
+
 # 3136KB = 3MB + 64KB
-bootpack.bim: bootpack.obj naskfunc.obj
+bootpack.bim: bootpack.obj naskfunc.obj hankaku.obj
 	$(OBJ2BIM) @$(RULE_FILE) \
 		out:$@ stack:3136k \
 		map:bootpack.map $^

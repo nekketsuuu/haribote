@@ -17,15 +17,15 @@ TRASH = $(QEMU_PATH)/fdimage0.bin
 
 # Build rules
 
+.PHONY: all tools
+
 all: tools $(IMG)
 
-.PHONY: tools
 tools:
 	$(MAKE) -C ./tolsrc
 	$(MAKE) -C ./tolsrc install
 	cp -r ./tolsrc/ok/* $(TOOL_PATH)/
 
-.PHONY: $(IMG)
 $(IMG):
 	$(MAKE) -C ./src IMG=$(notdir $(IMG))
 
