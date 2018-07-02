@@ -9,7 +9,7 @@ include ../tools.mak
 RULE_FILE = $(INCLUDE_PATH)/haribote.rul
 TEK = ../z_tools/fdimg0at.tek
 IMG = haribote.img
-CFILES   = bootpack.c graphic.c dsctbl.c
+CFILES   = bootpack.c graphic.c dsctbl.c int.c
 NASFILES = asmhead.nas ipl10.nas
 
 TRASH = $(IMG) \
@@ -45,7 +45,7 @@ hankaku.obj: hankaku.bin
 	$(BIN2OBJ) $< $@ _$(basename $<)
 
 # 3136KB = 3MB + 64KB
-bootpack.bim: bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj
+bootpack.bim: bootpack.obj naskfunc.obj hankaku.obj $(CFILES:%.c=%.obj)
 	$(OBJ2BIM) @$(RULE_FILE) \
 		out:$@ stack:3136k \
 		map:bootpack.map $^
