@@ -9,7 +9,7 @@ include ../tools.mak
 RULE_FILE = $(INCLUDE_PATH)/haribote.rul
 TEK = ../z_tools/fdimg0at.tek
 IMG = haribote.img
-CFILES   = bootpack.c graphic.c dsctbl.c int.c
+CFILES   = bootpack.c graphic.c dsctbl.c int.c fifo.c
 NASFILES = asmhead.nas ipl10.nas
 
 TRASH = $(IMG) \
