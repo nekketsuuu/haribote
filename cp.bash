@@ -17,5 +17,5 @@ cp "$@" ./src/
 
 for file in "$@" ; do
   base="$(basename "$file")"
-  ./convert.sh "./src/${base}"
+  ./convert.bash "./src/${base}"
 done
