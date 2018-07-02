@@ -1,4 +1,4 @@
-# Prerequisite: set $(TOOL_PATH) and $(INC_PATH)
+# Prerequisite: set $(TOOL_PATH) and $(INCLUDE_PATH)
 
 BIM2HRB  = $(TOOL_PATH)/bim2hrb
 BIN2OBJ  = $(TOOL_PATH)/bin2obj
@@ -10,4 +10,4 @@ MAKEFONT = $(TOOL_PATH)/makefont
 NASK     = $(TOOL_PATH)/nask
 OBJ2BIM  = $(TOOL_PATH)/obj2bim
 
-CFLAGS = -I$(TOOL_PATH) -Os -Wall
+CFLAGS = -I$(INCLUDE_PATH) -Os -Wall
