@@ -9,17 +9,19 @@ include ../tools.mak
 RULE_FILE = $(INCLUDE_PATH)/haribote.rul
 TEK = ../z_tools/fdimg0at.tek
 IMG = haribote.img
-CFILES = bootpack.c graphic.c dsctbl.c int.c fifo.c keyboard.c mouse.c
+C_OBJFILES = graphic.obj dsctbl.obj int.obj fifo.obj \
+  keyboard.obj mouse.obj memory.obj
+OBJFILES = bootpack.obj naskfunc.obj hankaku.obj $(C_OBJFILES)
 NASFILES = asmhead.nas ipl10.nas
 
 TRASH = $(IMG) \
-  $(CFILES:%.c=%.bim) $(CFILES:%.c=%.gas) $(CFILES:%.c=%.hrb) \
-  $(CFILES:%.c=%.nas) $(CFILES:%.c=%.obj) \
+  $(OBJFILES) $(OBJFILES:%.obj=%.bim) $(OBJFILES:%.obj=%.gas) \
+  $(OBJFILES:%.obj=%.hrb) $(C_OBJFILES:%.obj=%.nas) \
   $(NASFILES:%.nas=%.bin) $(NASFILES:%.nas=%.lst) \
-  bootpack.map \
-  hankaku.bin hankaku.obj \
-  haribote.sys \
-  naskfunc.obj
+  bootpack.map bootpack.nas \
+  haribote.sys
+
+.PRECIOUS: %.bim %.bin %.c %.gas %.hrb %.lst %.map %.nas %.obj %.sys
 
 # Build rules
 
@@ -35,7 +37,7 @@ all: $(IMG)
 %.nas: %.gas
 	$(GAS2NASK) $< $@
 
-%.obj: %.nas
+%.obj %.lst: %.nas
 	$(NASK) $< $@ $(@:%.bin=%.lst)
 
 hankaku.bin: hankaku.txt
@@ -45,7 +47,7 @@ hankaku.obj: hankaku.bin
 	$(BIN2OBJ) $< $@ _$(basename $<)
 
 # 3136KB = 3MB + 64KB
-bootpack.bim: bootpack.obj naskfunc.obj hankaku.obj $(CFILES:%.c=%.obj)
+bootpack.bim bootpack.map: $(OBJFILES)
 	$(OBJ2BIM) @$(RULE_FILE) \
 		out:$@ stack:3136k \
 		map:bootpack.map $^
