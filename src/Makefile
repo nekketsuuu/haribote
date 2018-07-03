@@ -10,7 +10,7 @@ RULE_FILE = $(INCLUDE_PATH)/haribote.rul
 TEK = ../z_tools/fdimg0at.tek
 IMG = haribote.img
 C_OBJFILES = graphic.obj dsctbl.obj int.obj fifo.obj \
-  keyboard.obj mouse.obj memory.obj
+  keyboard.obj mouse.obj memory.obj sheet.obj
 OBJFILES = bootpack.obj naskfunc.obj hankaku.obj $(C_OBJFILES)
 NASFILES = asmhead.nas ipl10.nas
 
